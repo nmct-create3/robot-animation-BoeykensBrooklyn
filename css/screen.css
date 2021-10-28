@@ -34,6 +34,8 @@ html {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--global-color-back);
+  color: var(--global-color-front);
 }
 
 *,
@@ -43,6 +45,11 @@ html {
 }
 
 body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
 }
 
 /*
@@ -133,16 +140,103 @@ body {
 */
 
 .c-robot {
+  fill: var(--global-color-front);
+  max-width: 300px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  --c-robot-animation-duration: 0.75s;
+  --c-robot-animation-timing-function: ease-in-out;
+  --c-robot-animation-iteration-count: infinite;
+  --c-robot-animation-direction: alternate;
 }
 
 .c-robot__shadow {
+  fill: black;
+  fill-opacity: 0.5;
 }
 
+@keyframes shadowPulse {
+  100% {
+    transform: scale(0.75);
+  }
+}
+
+@keyframes robotHover {
+  0% {
+    transform: translateY(2.5%);
+  }
+  100% {
+    transform: translateY(-2.5%);
+  }
+}
+
+.c-robot--css-anim #Shadow {
+  animation-name: shadowPulse;
+  animation-duration: var(--c-robot-animation-duration);
+  animation-timing-function: var(--c-robot-animation-timing-function);
+  animation-iteration-count: var(--c-robot-animation-iteration-count);
+  animation-direction: var(--c-robot-animation-direction);
+  transform-origin: 50% 100%;
+}
+
+.c-robot--css-anim #Robot {
+  animation-name: robotHover;
+  animation-duration: var(--c-robot-animation-duration);
+  animation-timing-function: var(--c-robot-animation-timing-function);
+  animation-iteration-count: var(--c-robot-animation-iteration-count);
+  animation-direction: var(--c-robot-animation-direction);
+  transform-origin: 50% 100%;
+}
 
 /*
     Component: Controls
 */
 
+.c-controls {
+  margin-bottom: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.c-controls__radio {
+  display: none;
+}
+
+.c-controls__button {
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.c-controls__list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.c-controls__radio:checked + .c-controls__button {
+  border: 1px solid rgba(0, 0, 0, 20%);
+  border-radius: 25%;
+  background-color: rgba(0, 0, 0, 20%);
+  padding: 10px;
+}
+
+.c-play-icon--display {
+  display: none;
+}
+
+.c-controls__button--pause {
+  margin-right: 50px;
+  border: 1px solid rgba(0, 0, 0, 20%);
+  border-radius: 100%;
+  background-color: rgba(0, 0, 0, 20%);
+}
+
+.c-play-icon{
+  margin: 10px;
+}
 /*------------------------------------*\
 #UTILITIES
 \*------------------------------------*/
